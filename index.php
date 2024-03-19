@@ -26,6 +26,8 @@ if (isset($_GET['pwLength'])) {
     };
 
     // var_dump($array);
+} else {
+    $array = [];
 }
 
 ?>
