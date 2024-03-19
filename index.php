@@ -1,8 +1,16 @@
 <?php
 
+
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
+
+
+
+// if (isset($_SESSION['password'])) {;
+
+//     header('Location: ./result.php');
+// }
 
 
 if (isset($_GET['pwLength'])) {
@@ -25,10 +33,22 @@ if (isset($_GET['pwLength'])) {
         }
     };
 
-    // var_dump($array);
+    $password = "";
+
+    foreach ($array as $item) {
+        $password .= $item;
+    }
+
+    session_start();
+    $_SESSION['password'] = $password;
+
+    if (isset($_SESSION['password'])) {;
+        header('Location: ./result.php');
+    }
 } else {
     $array = [];
 }
+
 
 ?>
 
@@ -51,7 +71,7 @@ if (isset($_GET['pwLength'])) {
 
         <form action="" method="GET">
 
-            <h1 class="py-4">Password Generator</h1>
+            <h1 class="pt-4">Password Generator</h1>
 
             <div class="mb-3">
                 <label for="pw-length" class="form-label">Inserire lunghezza password</label>
@@ -63,16 +83,7 @@ if (isset($_GET['pwLength'])) {
 
         </form>
 
-        <h2 class="pt-5 pb-2">Password</h2>
-        <p>
-            <?php
 
-            foreach ($array as $item) {
-                echo $item;
-            }
-
-            ?>
-        </p>
     </div>
 
 
